@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <title>Task List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      color: #333;
+      margin-bottom: 20px;
+      text-align: center;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+      background-color: #fff;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    th, td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #007BFF;
+      color: white;
+      text-transform: uppercase;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .button {
+      display: inline-block;
+      padding: 8px 12px;
+      color: white;
+      background-color: #28a745;
+      border-radius: 4px;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .button:hover {
+      background-color: #218838;
+    }
+
+    button {
+      display: block;
+      width: 150px;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #c82333;
+    }
+
+    button a {
+      color: white;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<h1>Task List</h1>
+<table border="1">
+  <thead>
+  <tr>
+    <th>Task ID</th>
+    <th>Assigner</th>
+    <th>Receiver</th>
+    <th>Description</th>
+    <th>Remark</th>
+    <th>Status</th>
+    <th>Created At</th>
+    <th>Completed At</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="task : ${tasksList}">
+    <td th:text="${task.taskId}"></td>
+    <td th:text="${task.taskAssigner}"></td>
+    <td th:text="${task.taskReceiver}"></td>
+    <td th:text="${task.taskDescription}"></td>
+    <td th:text="${task.remark}"></td>
+    <td th:text="${task.status}"></td>
+    <td th:text="${task.createdAt}"></td>
+    <td th:text="${task.completedAt}"></td>
+    <td>
+      <a th:href="@{/do/{taskId}(taskId=${task.taskId})}" class="button">Complete Task</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<button type="button">
+  <a href="/signIn">SIGN OUT</a>
+</button>
+</body>
+</html>
